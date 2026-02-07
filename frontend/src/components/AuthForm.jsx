@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import SocialButton from "./SocialButton";
+import { AuthContext } from "../auth/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function AuthForm() {
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+
     const [isSignup, setIsSignup] = useState(false);
     const [form, setForm] = useState({ email: "", password: "" });
 
@@ -12,8 +19,11 @@ export default function AuthForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(isSignup ? "Signup:" : "Login:", form);
+
+        login({ email: form.email });
+        navigate("/");
     }
+
 
     return (
         <div className="auth-form">
