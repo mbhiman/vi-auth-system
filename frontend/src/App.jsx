@@ -1,8 +1,8 @@
-
+import AuthPage from "./pages/login/AuthPage"
 function App() {
 
   return (
-    <p>hello, world!</p>
+    <AuthPage/>
   )
 }
 
